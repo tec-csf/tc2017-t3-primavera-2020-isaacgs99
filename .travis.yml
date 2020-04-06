@@ -6,5 +6,6 @@ dist: bionic
 
 script:
 - cd sources/
+- g++ hamilton.cpp -o hami
 
 

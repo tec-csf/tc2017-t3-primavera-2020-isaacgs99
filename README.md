@@ -43,4 +43,6 @@ El proyecto debe seguir la siguiente estructura de carpetas:
 
 ## 3. Referencias
 
-*[Incluya aquí las referencias a sitios de interés y cualquier otra información que haya utilizado para realizar la actividad y que le puedan ser de utilidad a otras personas que quieran usarlo como referencia]*
+*
+[https://www.techiedelight.com/travelling-salesman-problem-using-branch-and-bound/]
+*
