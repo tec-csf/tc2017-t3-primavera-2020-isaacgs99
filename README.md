@@ -45,4 +45,5 @@ El proyecto debe seguir la siguiente estructura de carpetas:
 
 *
 [https://www.techiedelight.com/travelling-salesman-problem-using-branch-and-bound/]
-*
+*[https://www.rosettacode.org/wiki/Word_wrap#C.2B.2B]
+
