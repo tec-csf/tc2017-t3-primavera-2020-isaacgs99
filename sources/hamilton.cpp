@@ -1,3 +1,7 @@
+/*
+  The following code is from the webpage: 
+  https://www.techiedelight.com/travelling-salesman-problem-using-branch-and-bound/
+*/
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -12,7 +16,10 @@ using namespace std;
 // Sentinal value for representing infinity
 #define INF INT_MAX
 
-// State Space Tree nodes
+/**
+ * State Space Tree nodes
+ *     
+*/
 struct Node
 {
     // stores edges of state space tree
@@ -31,9 +38,13 @@ struct Node
     // stores number of cities visited so far
     int level;
 };
-
-// Function to allocate a new node (i, j) corresponds to visiting
-// city j from city i
+    /**
+     * Allocate a new node (i, j) corresponds to visiting city j from city i
+     * 
+     * @param[in] Matrix, vector of the path, the level, city i and city j.
+     * 
+     * @returns New node.
+    */ 
 Node* newNode(int parentMatrix[N][N], vector<pair<int, int> > const &path,
             int level, int i, int j)
 {
@@ -74,9 +85,13 @@ Node* newNode(int parentMatrix[N][N], vector<pair<int, int> > const &path,
     // return node
     return node;
 }
-
-// Function to reduce each row in such a way that
-// there must be at least one zero in each row
+    /**
+     * Reduce each row in such a way that
+     * there must be at least one zero in each row
+     * 
+     * @param[in] reduced Matrix, row.
+     * 
+    */ 
 int rowReduction(int reducedMatrix[N][N], int row[N])
 {
     // initialize row array to INF
@@ -94,9 +109,13 @@ int rowReduction(int reducedMatrix[N][N], int row[N])
             if (reducedMatrix[i][j] != INF && row[i] != INF)
                 reducedMatrix[i][j] -= row[i];
 }
-
-// Function to reduce each column in such a way that
-// there must be at least one zero in each column
+    /**
+     * Reduce each column in such a way that
+     * there must be at least one zero in each column
+     * 
+     * @param[in] reduced Matrix, column.
+     * 
+    */ 
 int columnReduction(int reducedMatrix[N][N], int col[N])
 {
     // initialize col array to INF
@@ -114,9 +133,14 @@ int columnReduction(int reducedMatrix[N][N], int col[N])
             if (reducedMatrix[i][j] != INF && col[j] != INF)
                 reducedMatrix[i][j] -= col[j];
 }
-
-// Function to get the lower bound on
-// on the path starting at current min node
+    /**
+     * Get the lower bound on,
+     * on the path starting at current minimum node
+     * 
+     * @param[in] reduced Matrix.
+     * 
+     * @returns the cost.
+    */ 
 int calculateCost(int reducedMatrix[N][N])
 {
     // initialize cost to 0
@@ -138,8 +162,12 @@ int calculateCost(int reducedMatrix[N][N])
 
     return cost;
 }
-
-// print list of cities visited following least cost
+    /**
+     * Print list of cities visited following least cost
+     * 
+     * @param[in] vector of list.
+     * 
+    */ 
 void printPath(vector<pair<int, int> > const &list)
 {
   cout<<"\n"<<endl;
@@ -149,16 +177,24 @@ void printPath(vector<pair<int, int> > const &list)
              << list[i].second + 1 << endl;
     }
 }
-
-// Comparison object to be used to order the heap
+    /**
+     * Comparison object to be used to order the heap
+     * 
+     * 
+     * @returns the ordered heap.
+    */ 
 struct comp {
     bool operator()(const Node* lhs, const Node* rhs) const
     {
         return lhs->cost > rhs->cost;
     }
 };
-
-// Function to solve Traveling Salesman Problem using Branch and Bound
+    /**
+     * Solve Traveling Salesman Problem using Branch and Bound
+     * 
+     * @param[in] costs Matrix.
+     * 
+    */ 
 int solve(int costMatrix[N][N])
 {
     // Create a priority queue to store live nodes of search tree;
@@ -292,8 +328,9 @@ int main()
         {6,   4,   3,   INF}
     };
     */
-
+    cout<< "\nHamiltonian Path: ";
     cout<< solve(costMatrix)<<endl;
+    cout<< "\nEste algoritmo tiene una complejidad O(NP)"<<endl;
 
     return 0;
 }
