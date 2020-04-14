@@ -1,53 +1,152 @@
-/*
-  The following code is from the webpage: 
-  https://www.rosettacode.org/wiki/Word_wrap#C.2B.2B
-*/
 #include <iostream>
-#include <sstream>
 #include <string>
+#include <vector>
+#include <cmath>
 using namespace std;
 
 /**
- * Text that is going to be wrapped
- *     
-*/ 
-const char *text =
+ * Resets a value to zero
+ * 
+ * @param[in] an integer.
+ * 
+ * @returns the new integer value.
+*/
+int reset(int a)
 {
-  "AAAAAAAAAA AAAAAAAAAA CCCC CCCCCCCC AAAAAAAAAA AAAAAAAAAAAA AAAAAAAAAA"
+  a = 0;
+  return a;
+}
+/**
+ * Resets a value to zero
+ * 
+ * @param[in] a double.
+ * 
+ * @returns the new double value.
+*/
+double reset(double a)
+{
+  a = 0;
+  return a;
+}
+/**
+ * Calculates a cost
+ * 
+ * @param[in] index i, index j, optimal space, total accumulated and maximum length of width.
+ * 
+ * @returns the new integer value.
+*/
+double cost(double i, double j, double b, double total, double L)
+{
+  double costo = 0.0;
+  if(j==i){ 
+  /*
+  if a new line is created and the next new word doesn't 
+  fit, it assumes that the cost always be higher
+  */
+    return 10000;
+  }else{
+  double bPrime = (L - total)/(j-i); 
+  costo = (j-i)*(abs(bPrime-b));
+  }
 
-};
+  return costo;
+}
+
 /**
  * Wraps the text to the optimal line length
  * 
- * @param[in] text, the line length.
+ * @param[in] text, the line length, optimal space and total words.
  * 
  * @returns the wrapped text.
-*/  
-string wrap(const char *text, int line_length)
+*/
+void wrap( vector<double> text, double line_length, double b, int n)
 {
-    istringstream words(text);
-    ostringstream wrapped;
-    string word;
- 
-    if (words >> word) {
-        wrapped << word;
-        int space_left = line_length - word.length();
-        while (words >> word) {
-            if (space_left < word.length() + 1) {
-                wrapped << '\n' << word;
-                space_left = line_length - word.length();
-            } else {
-                wrapped << ' ' << word;
-                space_left -= word.length() + 1;
-            }
-        }
+    double k = 1.0;
+    double j = 1.0;
+    int linea = 1;
+    double cost_1 = 0.0;
+    double cost_2 = 0.0;
+    double total = 0.0; //total cost 
+    double lengthTotal = 0.0; //number of words and spaces on a line
+    double totalWords = 0.0; //number of words on a line
+
+    cout<<"Linea "<<linea<<": "<<"(";
+    
+    for(int i = 0; i<n; i++)
+    {
+      if (text[i] + lengthTotal + b < line_length) //Checks if a word can fit with spaces included
+      {
+
+          cout<<text[i]<<", ";
+          lengthTotal += text[i] + b; 
+          totalWords += text[i];
+          j++;
+        
+      }else
+      {
+        if (text[i] + lengthTotal == line_length ) //Checks if a word can fit without spaces included to finish the line
+        {
+          cout<<text[i]<<")"<<endl;
+          k = j;
+          j++;
+          linea++;
+          cout<<"Linea "<<linea<<": "<<"(";
+
+          totalWords = reset(totalWords);
+          lengthTotal = reset(lengthTotal);
+        }else //Checks where the word is going to have less cost
+        {
+          totalWords += text[i];
+          cost_1 = cost(k,j,b,totalWords,line_length); //cost to decrement space
+          cost_2 = cost(k,j-1,b,totalWords-text[i],line_length); //cost to increment space
+
+          if (cost_1<cost_2)
+          {
+            cout<<text[i]<<")"<<endl;
+            total += cost_1;
+            k = j+1;
+            j++;
+            linea++;
+            cout<<"Linea "<<linea<<": "<<"(";
+            totalWords = reset(totalWords);
+            lengthTotal = reset(lengthTotal);
+
+          }else{
+            cout<<")"<<endl;
+            total += cost_2;
+            k = j;
+            j++;
+            linea++;
+            totalWords = reset(totalWords);
+            lengthTotal = reset(lengthTotal);
+
+            lengthTotal += text[i] + b; 
+            totalWords += text[i];
+            cout<<"Linea "<<linea<<": "<<"("<<text[i]<<",";
+            
+          }
+        } 
+      }      
     }
-    return wrapped.str();
+    cout<<"\nEl costo total fue: "<< total<< endl;
+  
 }
  
 int main()
 {
-  int lineLength = 26; 
-  cout << "Wrapped at "<<lineLength<<":\n" << wrap(text,lineLength) << "\n\n";
+  //Ejemplo 1
+  double lineLength = 26.0; 
+  
+  vector<double> text;
+  text.push_back(10.0);
+  text.push_back(10.0);
+  text.push_back(4.0);
+  text.push_back(8.0);
+  text.push_back(10.0);
+  text.push_back(12.0);
+  text.push_back(12.0);
+
+  wrap(text,lineLength, 2.0,7);
+
   cout<< "Este algoritmo tiene una complejidad O(n)"<<endl;
 }

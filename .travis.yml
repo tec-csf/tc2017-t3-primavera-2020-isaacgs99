@@ -7,6 +7,6 @@ dist: bionic
 script: 
 - cd sources/
 - g++ hamilton.cpp -o hami
-- g++ division.cpp -o div
+- g++ division.cpp -o div2
 
 

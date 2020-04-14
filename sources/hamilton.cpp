@@ -330,7 +330,7 @@ int main()
     */
     cout<< "\nHamiltonian Path: ";
     cout<< solve(costMatrix)<<endl;
-    cout<< "\nEste algoritmo tiene una complejidad O(NP)"<<endl;
+    cout<< "\nEste algoritmo ante ciertas condiciones, tiene una complejidad O(A^n) donde a puede estar entre 1 a 2, pero tambien se puede clasificar como factorial. Cabe aclarar que es un tipo de problema NP (No se puede resolver en tiempo polinomial)"<<endl;
 
     return 0;
 }
