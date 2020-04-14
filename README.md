@@ -43,10 +43,41 @@ El proyecto debe seguir la siguiente estructura de carpetas:
 
 ### 2.1 Pasos a seguir para utilizar la aplicación
 
-*[]*
+*1.- Abrir la terminal.*
+
+*2.- Acceder al directorio donde vas a clonar el repositorio. Ej: cd desktop.*
+
+*3.- Usar el comando "git clone" seguido del link del repositorio, que es  el siguiente: https://github.com/tec-csf/tc2017-t3-primavera-2020-isaacgs99.git . Quedaria de la siguente manera: "git clone https://github.com/tec-csf/tc2017-t3-primavera-2020-isaacgs99.git.*
+
+*4.- Acceder al clon/carpeta del repositorio desde la terminal, el cuál se guardó donde se hizo el "git clone". Ej: "cd tc2017-t3-primavera-2020-isaacgs99".*
+
+*5.- Una vez que estés dentro de la carpeta del repositorio tendras que acceder a la carpeta de sources con el siguente comando: "cd sources".*
+
+*-Hamilton.*
+
+*6.- Se debe de modificar el código en  caso de querer poner diferentes problemas. Si quieres definir la cantidad de nodos presentes en el frado, debes de hacerlo en la línea 14.*
+
+*7.- Para colocar el grafo, se debe de hacer a través de una matríz (para colocar los ceros o cuando el nodo se conecte asi mismo, deberas de sustituirlo por INF)*
+
+*8.- Para poder utilizar el primer programa primero deberas compilar con el siguiente comando: "g++ hamilton.cpp -o hami".*
+
+*9.- El siguiente paso, para poder correrlo, es ingresar el siguiente comando: "./hami.*
+
+*-División de párrafos.*
+
+*6.- Se debe de modificar el código en caso de querer poner diferentes problemas. Para definir cuakquiera de los datos, se debe de hacer con un decimal por lo menos.*
+
+*7.- En la línea 138, se puede modificar el ancho de cada línea y abajo de esta el espacio óptimo entre palabras*
+
+*8.- Se debe de crear un vector con el tamaño de las letras que se desean e insertarlas con el método push_back()*
+
+*9.- Para poder utilizar el primer programa primero deberas compilar con el siguiente comando: "g++ division.cpp -o div2".*
+
+*10.- El siguiente paso, para poder correrlo, es ingresar el siguiente comando: "./div2.*
 
 ## 3. Referencias
 
 *[https://www.techiedelight.com/travelling-salesman-problem-using-branch-and-bound/]*
 *[https://www.rosettacode.org/wiki/Word_wrap#C.2B.2B]*
+*[Asesoría con el profesor Vicente Cubbells]*
 

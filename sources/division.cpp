@@ -135,8 +135,9 @@ void wrap( vector<double> text, double line_length, double b, int n)
 int main()
 {
   //Ejemplo 1
-  double lineLength = 26.0; 
-  
+  double lineLength = 26.0;
+  double optimalSpace = 2.0; 
+
   vector<double> text;
   text.push_back(10.0);
   text.push_back(10.0);
@@ -146,7 +147,7 @@ int main()
   text.push_back(12.0);
   text.push_back(12.0);
 
-  wrap(text,lineLength, 2.0,7);
+  wrap(text,lineLength, optimalSpace,text.size());
 
   cout<< "Este algoritmo tiene una complejidad O(n)"<<endl;
 }
